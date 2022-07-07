@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+  master-node:
+    build: ./src/Elastic_stack/elasticsearch/. 
+
