@@ -15,3 +15,5 @@ xpack.security.transport.ssl.key: /home/elasticsearch/elasticsearch-8.3.1/config
 xpack.security.transport.ssl.certificate: /home/elasticsearch/elasticsearch-8.3.1/config/certs/master-node/master-node.crt
 xpack.security.transport.ssl.certificate_authorities: /home/elasticsearch/elasticsearch-8.3.1/config/certs/ca/ca.crt
 xpack.security.transport.ssl.verification_mode: certificate
+
+xpack.monitoring.collection.enabled: true

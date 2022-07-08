@@ -1,10 +1,32 @@
-cd /home/elasticsearch/kibana-8.3.1
+#cd /home/elasticsearch/kibana-8.3.1
 
-curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://master-node:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}";
+curl -s -X POST --cacert /etc/kibana/config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://master-node:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}";
 
-echo "toor" | sudo -S chown root /home/elasticsearch/metricbeat-8.3.1/metricbeat.yml
+curl --retry 10 -S -L --output /tmp/metricbeat.tar.gz https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-8.3.1-linux-x86_64.tar.gz
+
+cd /tmp
+tar -zxf /tmp/metricbeat.tar.gz
+#cd -
+
+rm -rf /tmp/metricbeat.tar.gz
+cp -rf /tmp/metricbeat* /home/elasticsearch/metricbeat-8.3.1
+
 cd /home/elasticsearch/metricbeat-8.3.1
-echo "toor" | sudo -S ./metricbeat -e
-cd -
+rm -rf metricbeat.yml
+cp /srcs/configs/metricbeat.yml .
 
-exec bin/kibana
+
+systemctl enable kibana.service
+systemctl start kibana.service
+
+sleep 60
+
+./metricbeat modules disable kibana
+./metricbeat modules disable system
+./metricbeat modules enable kibana-xpack
+
+
+rm -rf modules.d/kibana-xpack.yml
+cp /srcs/configs/kibana-xpack.yml ./modules.d/.
+./metricbeat setup -e
+./metricbeat -e

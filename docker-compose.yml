@@ -44,7 +44,7 @@ services:
       retries: 120
   kibana:
     volumes:
-      - certs:/home/elasticsearch/kibana-8.3.1/config/certs
+      - certs:/etc/kibana/config/certs
     depends_on:
       second-node:
         condition: service_healthy
@@ -53,7 +53,7 @@ services:
     ports:
       - 5601:5601
     environment:
-      - CA_PEM=/home/elasticsearch/kibana-8.3.1/config/certs/ca/ca.crt
+      - CA_PEM=/etc/kibana/config/certs/ca/ca.crt
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - KIBANA_PASSWORD=${KIBANA_PASSWORD}
     mem_limit: 1073741824

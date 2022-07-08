@@ -1,5 +1,4 @@
-metricbeat.config.modules:
-  path: ./modules.d/*.yml
+
 
 output.elasticsearch:
   hosts: ["master-node:9200"]
@@ -16,3 +15,4 @@ setup.kibana:
     protocol: "http"
     username: "elastic"  
     password: "testing"
+

@@ -15,8 +15,8 @@ RUN chmod +x tools/build.sh  && bash tools/build.sh
 
 WORKDIR /home/elasticsearch
 
-USER elasticsearch
+#USER root
 
-WORKDIR /home/elasticsearch/kibana-8.3.1
+#WORKDIR /home/elasticsearch/kibana-8.3.1
 
 ENTRYPOINT ["/bin/bash", "/srcs/tools/entrypoint.sh"]
