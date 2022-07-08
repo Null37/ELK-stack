@@ -42,6 +42,20 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+  kibana:
+    volumes:
+      - certs:/home/elasticsearch/kibana-8.3.1/config/certs
+    depends_on:
+      second-node:
+        condition: service_healthy
+    build: ./src/elastic_stack/kibana/.
+    image: kibana
+    ports:
+      - 5601:5601
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - KIBANA_PASSWORD=${KIBANA_PASSWORD}
+    mem_limit: 1073741824
 volumes:
   certs:
     driver: local
