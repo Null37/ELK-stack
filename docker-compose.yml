@@ -2,5 +2,23 @@ version: "3"
 
 services:
   master-node:
-    build: ./src/Elastic_stack/elasticsearch/. 
+    ports:
+      - 9200:9200
+      - 9300:9300
+    build: ./src/elastic_stack/elasticsearch/.
+    environment:
+      - node.name=master-node
+      - cluster.name=elkcluster
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=certs/master-node/master-node.key
+      - xpack.security.http.ssl.certificate=certs/master-node/master-node.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.http.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/master-node/master-node.key
+      - xpack.security.transport.ssl.certificate=certs/master-node/master-node.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
 
