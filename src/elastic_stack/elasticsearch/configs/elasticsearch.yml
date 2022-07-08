@@ -17,3 +17,4 @@ xpack.security.transport.ssl.certificate_authorities: /home/elasticsearch/elasti
 xpack.security.transport.ssl.verification_mode: certificate
 
 xpack.monitoring.collection.enabled: true
+xpack.monitoring.elasticsearch.collection.enabled: false

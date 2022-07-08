@@ -4,15 +4,15 @@ metricbeat.config.modules:
 output.elasticsearch:
   hosts: ["master-node:9200"]
   username: "elastic"
-  password: ${ELASTIC_PASSWORD}
+  password: "testing"
   protocol: "https"
   ssl:
     enabled: true
-    certificate_authorities: "/etc/kibana/config/certs/ca/ca.crt"
+    certificate_authorities: "/home/elasticsearch/elasticsearch-8.3.1/config/certs/ca/ca.crt"
 
 
 setup.kibana:
     host: "kibana:5601"
     protocol: "http"
     username: "elastic"
-    password: ${ELASTIC_PASSWORD}
+    password: "testing"

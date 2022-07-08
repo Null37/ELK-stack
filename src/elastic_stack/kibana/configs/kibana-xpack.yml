@@ -5,5 +5,5 @@
   hosts: ["localhost:5601"]
   #basepath: ""
   username: "elastic"
-  password: "testing"
+  password: ${ELASTIC_PASSWORD}
   xpack.enabled: true

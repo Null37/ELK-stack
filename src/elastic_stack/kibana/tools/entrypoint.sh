@@ -19,14 +19,23 @@ cp /srcs/configs/metricbeat.yml .
 systemctl enable kibana.service
 systemctl start kibana.service
 
-sleep 60
+x=0
+while [ $x -le 30 ]
+do
+if curl -s --cacert /etc/kibana/config/certs/ca/ca.crt https://master-node:9200 | grep -q 'missing authentication credentials'
+        then
+                ./metricbeat modules disable kibana
+		./metricbeat modules disable system
+		./metricbeat modules enable kibana-xpack
+		rm -rf modules.d/kibana-xpack.yml
+		cp /srcs/configs/kibana-xpack.yml ./modules.d/.
+		./metricbeat setup -e
+		./metricbeat -e
+                break
+        fi
+        echo "still waiting"
+        sleep 10
+        x=$(( $x + 1 ))
+done
 
-./metricbeat modules disable kibana
-./metricbeat modules disable system
-./metricbeat modules enable kibana-xpack
 
-
-rm -rf modules.d/kibana-xpack.yml
-cp /srcs/configs/kibana-xpack.yml ./modules.d/.
-./metricbeat setup -e
-./metricbeat -e

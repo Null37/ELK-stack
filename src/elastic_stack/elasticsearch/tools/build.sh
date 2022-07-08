@@ -5,7 +5,7 @@ apt-get -y update && apt-get -y upgrade
 
 #installing utils
 
-apt-get -y install wget curl unzip
+apt-get -y install wget curl unzip vim sudo
 
 #adding user and group
 
@@ -42,8 +42,13 @@ cd /tmp
 tar -xzf /tmp/metricbeat.tar.gz
 cd -
 
+#create config
 cp -rf /tmp/metricbeat-8.3.1-linux-x86_64 /home/elasticsearch
 mv /home/elasticsearch/metricbeat-8.3.1-linux-x86_64 /home/elasticsearch/metricbeat-8.3.1
+cd  /home/elasticsearch/metricbeat-8.3.1
+rm -rf metricbeat.yml
+cp /srcs/configs/metricbeat.yml .
+
 chown -R 1000:1000 /home/elasticsearch
 
 
