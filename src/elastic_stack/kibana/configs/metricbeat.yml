@@ -1,0 +1,24 @@
+
+
+output.elasticsearch:
+  hosts: ["https://master-node:9200"]
+  username: "elastic"
+  password: ${ELASTIC_PASSWORD}
+  ssl:
+    enabled: true
+    certificate_authorities: ${CA_CRT}
+
+
+setup.kibana:
+    host: "kibana:5601"
+    protocol: "http"
+    username: "elastic"  
+    password: ${ELASTIC_PASSWORD}
+
+metricbeat.modules:
+- module: kibana
+  metricsets: ["status"]
+  period: 10s
+  hosts: ["localhost:5601"]
+  basepath: ""
+  enabled: true

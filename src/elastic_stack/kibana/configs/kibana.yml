@@ -1,6 +1,6 @@
 server.host: "0.0.0.0"
 elasticsearch.hosts: ["https://master-node:9200"]
 elasticsearch.username: "kibana_system"
-elasticsearch.password: "testing"
+elasticsearch.password: ${KIBANA_PASSWORD}
 elasticsearch.ssl.verificationMode: certificate
 elasticsearch.ssl.certificateAuthorities: [ "/home/elasticsearch/kibana-8.3.1/config/certs/ca/ca.crt" ]

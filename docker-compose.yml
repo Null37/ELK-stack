@@ -53,6 +53,7 @@ services:
     ports:
       - 5601:5601
     environment:
+      - CA_PEM=/home/elasticsearch/kibana-8.3.1/config/certs/ca/ca.crt
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - KIBANA_PASSWORD=${KIBANA_PASSWORD}
     mem_limit: 1073741824
