@@ -25,21 +25,13 @@ cp -rf /tmp/elasticsearch-8.3.1 /home/elasticsearch
 
 cd /home/elasticsearch/elasticsearch-8.3.1
 
+mkdir -p config/certs
+mkdir -p config/certs/ca
+mkdir -p /home/elasticsearch/elasticsearch-8.3.1/data
+mkdir -p /home/elasticsearch/elasticsearch-8.3.1/logs
+
 rm -rf config/elasticsearch.yml
 cp /srcs/configs/elasticsearch.yml ./config
-
-source bin/elasticsearch-env-from-file
-
-if [[ -f bin/elasticsearch-users ]]; then
-  if [[ -n "$ELASTIC_PASSWORD" ]]; then
-    [[ -f config/elasticsearch.keystore ]] || (bin/elasticsearch-keystore create)
-    if ! (bin/elasticsearch-keystore has-passwd --silent) ; then
-      if ! (bin/elasticsearch-keystore list | grep -q '^bootstrap.password$'); then
-        (echo "$ELASTIC_PASSWORD" | bin/elasticsearch-keystore add -x 'bootstrap.password')
-      fi
-    fi
-  fi
-fi
 
 #installing metricbeat
 
