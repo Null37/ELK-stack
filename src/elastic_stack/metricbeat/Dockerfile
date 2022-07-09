@@ -1,7 +1,10 @@
-FROM docker.elastic.co/beats/metricbeat:8.3.1
+FROM debian:bullseye
+COPY . /root/.
 
-COPY metricbeat.yml /usr/share/metricbeat/metricbeat.yml
 USER root
-run mkdir /root/config
-run mkdir /root/config/certs
-RUN chown root /usr/share/metricbeat/metricbeat.yml
+WORKDIR /root
+
+RUN /bin/bash build.sh
+
+ENTRYPOINT ["/bin/bash", "/root/entry.sh"]
+

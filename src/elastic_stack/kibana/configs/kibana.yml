@@ -5,3 +5,4 @@ elasticsearch.username: "kibana_system"
 elasticsearch.password: "testing"
 elasticsearch.ssl.verificationMode: certificate
 elasticsearch.ssl.certificateAuthorities: [ "/etc/kibana/config/certs/ca/ca.crt" ]
+

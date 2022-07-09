@@ -28,6 +28,13 @@ metricbeat.modules:
   ssl:
     enabled: true
     certificate_authorities: "/root/config/certs/ca/ca.crt"
+- module: kibana
+  metricsets: ["status"]
+  period: 10s
+  xpack.enabled: true
+  hosts: ["http://kibana:5601"]
+  username: "elastic"
+  password: "testing"
 
 setup.kibana:
     host: "kibana:5601"

@@ -60,14 +60,19 @@ services:
       - KIBANA_PASSWORD=${KIBANA_PASSWORD}
     mem_limit: 3073741824
   metricbeat:
-      build: ./src/elastic_stack/metricbeat/.
+    build: ./src/elastic_stack/metricbeat/.
     # to specify the built image name and version, add "image" config
     #image: metricbeat_deployment_metricbeat:0.1.0
-      image: metricbeat
-      volumes:
-        - certs:/root/config/certs
-      depends_on:
-        - second-node
+    image: metricbeat
+    volumes:
+      - certs:/root/config/certs
+    depends_on:
+      - kibana
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s -I http://kibana:5601 | grep -q '200 OK'"]
+      interval: 10s
+      timeout: 10s
+      retries: 1200
 volumes:
   certs:
     driver: local
