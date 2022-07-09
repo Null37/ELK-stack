@@ -35,19 +35,19 @@ cp /srcs/configs/elasticsearch.yml ./config
 
 #installing metricbeat
 
-cd /home/elasticsearch
-curl --retry 10 -S -L --output /tmp/metricbeat.tar.gz https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-8.3.1-linux-x86_64.tar.gz
+#cd /home/elasticsearch
+#curl --retry 10 -S -L --output /tmp/metricbeat.tar.gz https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-8.3.1-linux-x86_64.tar.gz
 
-cd /tmp
-tar -xzf /tmp/metricbeat.tar.gz
-cd -
+#cd /tmp
+#tar -xzf /tmp/metricbeat.tar.gz
+#cd -
 
 #create config
-cp -rf /tmp/metricbeat-8.3.1-linux-x86_64 /home/elasticsearch
-mv /home/elasticsearch/metricbeat-8.3.1-linux-x86_64 /home/elasticsearch/metricbeat-8.3.1
-cd  /home/elasticsearch/metricbeat-8.3.1
-rm -rf metricbeat.yml
-cp /srcs/configs/metricbeat.yml .
+#cp -rf /tmp/metricbeat-8.3.1-linux-x86_64 /home/elasticsearch
+#mv /home/elasticsearch/metricbeat-8.3.1-linux-x86_64 /home/elasticsearch/metricbeat-8.3.1
+#cd  /home/elasticsearch/metricbeat-8.3.1
+#rm -rf metricbeat.yml
+#cp /srcs/configs/metricbeat.yml .
 
 chown -R 1000:1000 /home/elasticsearch
 

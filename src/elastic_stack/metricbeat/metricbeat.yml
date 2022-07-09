@@ -1,0 +1,44 @@
+metricbeat.config.modules:
+  path: ./modules.d/*.yml
+  reload.enabled: false
+
+processors:
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+
+output.elasticsearch:
+  hosts: ["https://master-node:9200"]
+  username: "elastic"
+  password: "testing"
+    # protocol: "https"
+  ssl:
+    enabled: true
+    certificate_authorities: "/root/config/certs/ca/ca.crt"
+
+# enabled modules for monitoring (e.g. elasticsearch-xpack)
+metricbeat.modules:
+- module: elasticsearch
+  xpack.enabled: true
+  period: 10s
+  hosts: ["https://master-node:9200"]
+  username: "elastic"
+  password: "testing"
+    #  protocol: "https"
+  ssl:
+    enabled: true
+    certificate_authorities: "/root/config/certs/ca/ca.crt"
+
+metricbeat.modules:
+- module: kibana
+  metricsets: ["status"]
+  period: 10s
+  hosts: ["localhost:5601"]
+  basepath: ""
+  enabled: true
+
+setup.kibana:
+    host: "kibana:5601"
+    protocol: "http"
+    username: "elastic"
+    password: "testing"
+

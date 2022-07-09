@@ -38,10 +38,10 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
     mem_limit: 3073741824
     healthcheck:
-      test: ["CMD-SHELL", "[ -f /home/elasticsearch/elasticsearch-8.3.1/config/certs/ca/ca.crt ] && curl -s --cacert /home/elasticsearch/elasticsearch-8.3.1/config/certs/ca/ca.crt https://master-node:9200 | grep -q 'missing authentication credentials'"]
+      test: ["CMD-SHELL", "[ -f config/certs/ca/ca.crt ] && curl -s --cacert config/certs/ca/ca.crt https://localhost:9200 | grep -q 'missing authentication credentials'"]
       interval: 10s
       timeout: 10s
-      retries: 120
+      retries: 1200
   kibana:
     volumes:
       - certs:/etc/kibana/config/certs
@@ -57,6 +57,15 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - KIBANA_PASSWORD=${KIBANA_PASSWORD}
     mem_limit: 3073741824
+  metricbeat:
+      build: ./src/elastic_stack/metricbeat/.
+    # to specify the built image name and version, add "image" config
+    #image: metricbeat_deployment_metricbeat:0.1.0
+      image: metricbeat
+      volumes:
+        - certs:/root/config/certs
+      depends_on:
+        - second-node
 volumes:
   certs:
     driver: local

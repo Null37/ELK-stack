@@ -37,26 +37,26 @@ then
 	cp -rf tmpcerts/* config/certs
 fi
 
-exec bin/elasticsearch -d
+exec bin/elasticsearch
 
 #setup metricbeat
-cd /home/elasticsearch/metricbeat-8.3.1
+#cd /home/elasticsearch/metricbeat-8.3.1
 
-x=0
-while [ $x -le 30 ]
-do
-if curl -s --cacert /home/elasticsearch/elasticsearch-8.3.1/config/certs/ca/ca.crt https://master-node:9200 | grep -q 'missing authentication credentials'
-        then
-		echo "toor" | sudo -S ./metricbeat modules enable elasticsearch-xpack
-		echo "toor" | sudo -S ./metricbeat modules disable system
-		echo "toor" | sudo -S ./metricbeat setup -e
-		echo "toor" | sudo -S rm -rf modules.d/elasticsearch-xpack.yml
-		cp /srcs/configs/elasticsearch-xpack.yml ./modules.d/.
-		echo "toor" | sudo -S ./metricbeat -e
-                break
-        fi
-        echo "still waiting"
-        sleep 10
-        x=$(( $x + 1 ))
-done
+Ex=0
+#while [ $x -le 30 ]
+#do
+#if curl -s --cacert /home/elasticsearch/elasticsearch-8.3.1/config/certs/ca/ca.crt https://master-node:9200 | grep -q 'missing authentication credentials'
+ #       then
+#		echo "toor" | sudo -S ./metricbeat modules enable elasticsearch-xpack
+#		echo "toor" | sudo -S ./metricbeat modules disable system
+#		echo "toor" | sudo -S ./metricbeat setup -e
+#		echo "toor" | sudo -S rm -rf modules.d/elasticsearch-xpack.yml
+#		cp /srcs/configs/elasticsearch-xpack.yml ./modules.d/.
+#		echo "toor" | sudo -S ./metricbeat -e
+ #               break
+  #      fi
+   #     echo "still waiting"
+   #     sleep 10
+    #    x=$(( $x + 1 ))
+#done
 
