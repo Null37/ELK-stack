@@ -30,6 +30,8 @@ services:
     volumes:
       - certs:/home/elasticsearch/elasticsearch-8.3.1/config/certs
       - second-node-data:/home/elasticsearch/elasticsearch-8.3.1/data
+    ports:
+      - 39200:9200
     environment:
       - node.name=second-node
       - cluster.name=elkcluster

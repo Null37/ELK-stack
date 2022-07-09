@@ -20,6 +20,7 @@ metricbeat.modules:
 - module: elasticsearch
   xpack.enabled: true
   period: 10s
+  scope: cluster
   hosts: ["https://master-node:9200"]
   username: "elastic"
   password: "testing"
