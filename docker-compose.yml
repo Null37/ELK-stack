@@ -18,7 +18,7 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
     mem_limit: 3073741824
     healthcheck:
-      test: ["CMD-SHELL", "[ -f /home/elasticsearch/elasticsearch-8.3.1/config/certs/ca/ca.crt ]"]
+      test: ["CMD-SHELL", "[ -f config/certs/ca/ca.crt ]"]
       interval: 50s
       timeout: 50s
       retries: 1200
