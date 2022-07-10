@@ -1,2 +1,8 @@
 http.host: "0.0.0.0"
 xpack.monitoring.elasticsearch.hosts: [ "http://master-node:9200" ]
+  #pipeline.workers: 2
+  #node.name: "data_test"
+pipeline:
+  workers: 2
+node:
+  name: "tanger-testing"

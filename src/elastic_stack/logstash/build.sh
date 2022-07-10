@@ -19,6 +19,7 @@ rm -rf /tmp/logstash.tar.gz
 cp -rf /tmp/logstash* /root/logstash-8.3.1
 cd /root/logstash-8.3.1
 rm -rf config/logstash.yml
+rm -rf config/pipelines.yml
 unzip /root/archive.zip
 cp Games.csv config/.
 
