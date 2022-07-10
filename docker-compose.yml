@@ -59,10 +59,17 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - KIBANA_PASSWORD=${KIBANA_PASSWORD}
     mem_limit: 3073741824
+  logstash:
+    build: ./src/elastic_stack/logstash/.
+    image: logstash
+    ports:
+      - 9600:9600
+    volumes:
+      - certs:/root/config/certs
+    depends_on:
+      - kibana
   metricbeat:
     build: ./src/elastic_stack/metricbeat/.
-    # to specify the built image name and version, add "image" config
-    #image: metricbeat_deployment_metricbeat:0.1.0
     image: metricbeat
     volumes:
       - certs:/root/config/certs
