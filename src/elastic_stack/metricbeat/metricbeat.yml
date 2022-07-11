@@ -9,13 +9,12 @@ processors:
 output.elasticsearch:
   hosts: ["https://master-node:9200"]
   username: "elastic"
-  password: "testing"
-    # protocol: "https"
+  password: '${ELASTIC_PASSWORD}'
   ssl:
     enabled: true
     certificate_authorities: "/root/config/certs/ca/ca.crt"
 
-# enabled modules for monitoring (e.g. elasticsearch-xpack)
+# enabled modules for monitoring
 metricbeat.modules:
 - module: elasticsearch
   xpack.enabled: true
@@ -23,8 +22,7 @@ metricbeat.modules:
   scope: cluster
   hosts: ["https://master-node:9200"]
   username: "elastic"
-  password: "testing"
-    #  protocol: "https"
+  password: '${ELASTIC_PASSWORD}'
   ssl:
     enabled: true
     certificate_authorities: "/root/config/certs/ca/ca.crt"
@@ -34,18 +32,18 @@ metricbeat.modules:
   xpack.enabled: true
   hosts: ["http://kibana:5601"]
   username: "elastic"
-  password: "testing"
+  password: '${ELASTIC_PASSWORD}'
 - module: logstash
   metricsets: ["node", "node_stats"]
   period: 10s
   hosts: ["localhost:9600"]
   username: "elastic"
-  password: "testing"
+  password: '${ELASTIC_PASSWORD}'
   xpack.enabled: true
 
 setup.kibana:
     host: "kibana:5601"
     protocol: "http"
     username: "elastic"
-    password: "testing"
+    password: '${ELASTIC_PASSWORD}'
 
