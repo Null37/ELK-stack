@@ -1,9 +1,0 @@
-- module: kibana
-  metricsets:
-    - stats
-  period: 10s
-  hosts: ["localhost:5601"]
-  #basepath: ""
-  username: "elastic"
-  password: ${ELASTIC_PASSWORD}
-  xpack.enabled: true

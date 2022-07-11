@@ -1,8 +1,6 @@
 cd /home/elasticsearch/elasticsearch-8.3.1
 
 
-
-
 if [  ! -f /home/elasticsearch/elasticsearch-8.3.1/config/certs/ca/ca.crt ]
 then
 	if [[ -f bin/elasticsearch-users ]]; then

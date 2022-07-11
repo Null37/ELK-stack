@@ -17,27 +17,8 @@ apt-get -y update && apt-get -y install kibana=8.3.1
 
 
 
-#cd /home/elasticsearch
-
-#curl --retry 10 -S -L --output /tmp/kibana.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-8.3.1-linux-x86_64.tar.gz
-
-#cd /tmp
-#tar -zxf /tmp/kibana.tar.gz
-#cd -
-
-#rm -rf /tmp/kibana.tar.gz
-#cp -rf /tmp/kibana* /home/elasticsearch/kibana-8.3.1
-
 cd /etc/kibana/
 rm -rf /etc/kibana/kibana.yml
 cp /srcs/configs/kibana.yml .
 
 mkdir -p config/certs
-
-
-
-#adding user and group
-#chown -R 1000:1000 /home/elasticsearch
-
-
-
