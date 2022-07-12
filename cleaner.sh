@@ -5,7 +5,7 @@ sudo docker rm -f $(sudo docker ps -qa);
 #sudo docker rmi -f elasticsearch37;
 #sudo docker rmi -f kibana;
 #sudo docker rmi -f metricbeat;
-sudo docker rmi -f logstash;
+#sudo docker rmi -f logstash;
 #sudo docker rmi -f elastic-agent;
 sudo docker volume rm $(sudo docker volume ls -q);
 sudo docker network rm $(sudo docker network ls -q) 2>/dev/null
